@@ -1,8 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void print_row(int);
-
 int main(void)
 {
     int height;
