@@ -91,10 +91,14 @@ void print_winner(void)
         {
             j++;
             winners[j] = candidates[i].name;
-            highest_score = candidates[i].votes;
         }
-        else
+        else if (candidates[i].votes > highest_score)
         {
+            for (int c = 0; c < candidate_count; c++)
+            {
+                winners[c] = "";
+            }
+
             winners[j] = candidates[i].name;
             highest_score = candidates[i].votes;
         }
