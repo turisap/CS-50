@@ -34,17 +34,17 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             int green = image[i][j].rgbtGreen;
             int blue = image[i][j].rgbtBlue;
 
-            int sepiaRed = floor(0.393 * red + 0.769 * green + 0.189 * blue);
-            int sepiaGreen = floor(0.349 * red + 0.686 * green + 0.168 * blue);
-            int sepiaBlue = floor(0.272 * red + 0.534 * green + 0.131 * blue);
+            int sepia_red = floor(0.393 * red + 0.769 * green + 0.189 * blue);
+            int sepia_green = floor(0.349 * red + 0.686 * green + 0.168 * blue);
+            int sepia_blue = floor(0.272 * red + 0.534 * green + 0.131 * blue);
 
-            sepiaRed = sepiaRed > 255 ? 255 : sepiaRed;
-            sepiaGreen = sepiaGreen > 255 ? 255 : sepiaGreen;
-            sepiaBlue = sepiaBlue > 255 ? 255 : sepiaBlue;
+            sepia_red = sepia_red > 255 ? 255 : sepia_red;
+            sepia_green = sepia_green > 255 ? 255 : sepia_green;
+            sepia_blue = sepia_blue > 255 ? 255 : sepia_blue;
 
-            image[i][j].rgbtRed = sepiaRed;
-            image[i][j].rgbtGreen = sepiaGreen;
-            image[i][j].rgbtBlue = sepiaBlue;
+            image[i][j].rgbtRed = sepia_red;
+            image[i][j].rgbtGreen = sepia_green;
+            image[i][j].rgbtBlue = sepia_blue;
         }
     }
     return;
@@ -53,6 +53,18 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    for (int i = 0; i < height; i++)
+    {
+        RGBTRIPLE inverse_row[width];
+        for (int j = 0; j < width; j++)
+        {
+            inverse_row[width - j - 1] = image[i][j];
+        }
+        for (int k = 0; k < width; k++)
+        {
+            image[i][k] = inverse_row[k];
+        }
+    }
     return;
 }
 
